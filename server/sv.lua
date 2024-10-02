@@ -118,21 +118,21 @@ end)
 
 RegisterServerEvent("shops:sell")
 AddEventHandler("shops:sell", function(data)
-	if not Config.Shops[data.DisplayName].transaction then
-		Config.Shops[data.DisplayName].transaction = true
+	if not Config.Storelist[data.DisplayName].transaction then
+		Config.Storelist[data.DisplayName].transaction = true
 		local xPlayer = ESX.GetPlayerFromId(source)
 		local cantCarry = false
-		local shopItemCount = loadShop(data.DisplayName)
+		local shopItemCount = LoadData(data.DisplayName)
 		local account = nil
 		local isInJobs = false
 
-		if Config.Shops[data.DisplayName].sellJob ~= nil then
-			for k, v in pairs(Config.Shops[data.DisplayName].sellJob) do
+		if Config.Storelist[data.DisplayName].sellJob ~= nil then
+			for k, v in pairs(Config.Storelist[data.DisplayName].sellJob) do
 				if v == xPlayer.job.name then isInJobs = true end
 			end
 		end
 
-		if Config.Shops[data.DisplayName].sellJob == nil or isInJobs then
+		if Config.Storelist[data.DisplayName].sellJob == nil or isInJobs then
 			if data.PaymentID == 1 then
 				account = "money"
 			elseif data.PaymentID == 2 then
@@ -140,7 +140,7 @@ AddEventHandler("shops:sell", function(data)
 			elseif data.PaymentID == 3 then
 				account = "black_money"
 			end
-			if Config.Shops[data.DisplayName].sellJob == nil then 
+			if Config.Storelist[data.DisplayName].sellJob == nil then 
 				for k, v in pairs(data.payData) do
 					xPlayer.removeInventoryItem(v.name, tonumber(v.amount))
 					xPlayer.addAccountMoney(account, tonumber(v.amount) * tonumber(v.price))
@@ -158,7 +158,7 @@ AddEventHandler("shops:sell", function(data)
 				end)
 			end
 
-			saveShop(data.DisplayName, shopItemCount)
+			SaveData(data.DisplayName, shopItemCount)
 
 			TriggerClientEvent('shops:CloseStore', source)
 		else

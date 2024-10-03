@@ -87,7 +87,7 @@ const open = (data) => {
 
 const close = () => {
   $.post(
-    'https://shops/action',
+   `https://${GetParentResourceName()}/action`,
     JSON.stringify({
       action: 'close',
     })
@@ -99,7 +99,7 @@ const closeEsc = () => {
     $('.modal-wrapper').css('display', 'none')
   } else {
     $.post(
-      'https://shops/action',
+    `https://${GetParentResourceName()}/action`,
       JSON.stringify({
         action: 'close',
       })
@@ -245,7 +245,7 @@ const setBuyButton = () => {
 
           if (payData.length) {
             $.post(
-              'https://shops/action',
+              `https://${GetParentResourceName()}/action`,
               JSON.stringify({
                 action: 'buy',
                 data: {
@@ -404,7 +404,7 @@ const setSellButton = () => {
             }))
           if (payData.length) {
             $.post(
-              'https://shops/action',
+              `https://${GetParentResourceName()}/action`,
               JSON.stringify({
                 action: 'sell',
                 data: {

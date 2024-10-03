@@ -293,6 +293,7 @@ Config.Storelist = {
         DisplayName = "BurgerShot",
         sellJob = {'burgershot'}, -- The name of the jobs that can access this shop's sell option. Money goes to the society
         Position = vector3(-1198.8856201172, -882.81433105469, 13.348832130432),
+        Distancetoseller = 1.5,  --- Distance that opens TextUI and you are able to open the shop
         BlipSettings = { -- Blip creation (set this to false if do not want a blip)
         ColorID = 75, -- Color for the shop blip
         SpriteID = 103, -- Sprite ID for the blip
